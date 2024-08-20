@@ -1,0 +1,99 @@
+interface types {
+    use jabratech:common/types.{currency, counterparty, user, pair};
+
+    record loan-response{
+        code: s16,
+        message: string,
+        data: list<loan>
+    }
+
+    record loan{
+        id: s64,
+        sort: option<s8>,
+        user-created: option<user>,
+        date-created: option<string>,
+        user-updated: option<user>,
+        date-updated: option<string>,
+        reference-id: string,
+        counterparty: counterparty,
+        pair: pair,
+        base-ccy: currency,
+        term-ccy: currency,
+        loan-to-value: f64,
+        interest-rate: f64,
+        trade-date: string,
+        reference-rate: f64,
+        base-ccy-amount: f64,
+        initial-exchange-amount: f64,
+        transaction-type: string,
+        status: string,
+        group-id: string,
+        party-a: counterparty,
+        party-b: counterparty
+    }
+
+    record loan-create-request{
+        sort: option<s8>,
+        user-created: string,
+        date-created: string,
+        user-updated: string,
+        date-updated:string,
+        reference-id: string,
+        counterparty-id: s8,
+        pair-id: s8,
+        base-ccy-id: s8,
+        term-ccy-id: s8,
+        loan-to-value: f64,
+        interest-rate: f64,
+        trade-date: string,
+        reference-rate: f64,
+        base-ccy-amount: f64,
+        initial-exchange-amount: f64,
+        transaction-type: string,
+        status: string,
+        group-id: string,
+        party-a: s8,
+        party-b: s8 
+    }
+
+    record create-request{
+        user-email: string,
+        loans: list<loan-create-request>
+    }
+
+    record loan-update-request{
+        id: option<s64>,
+        sort: option<s8>,
+        user-created: string,
+        date-created: string,
+        user-updated: string,
+        date-updated:string,
+        reference-id: string,
+        counterparty-id: s8,
+        pair-id: s8,
+        base-ccy-id: s8,
+        term-ccy-id: s8,
+        loan-to-value: f64,
+        interest-rate: f64,
+        trade-date: string,
+        reference-rate: f64,
+        base-ccy-amount: f64,
+        initial-exchange-amount: f64,
+        transaction-type: string,
+        status: string,
+        group-id: option<string>,
+        party-a: s8,
+        party-b: s8 
+    }
+
+    record update-request{
+        user-email: string,
+        loans: list<loan-update-request>
+    }
+
+    record delete-request{
+        user-email: string,
+        id: option<list<s64>>,
+        group-id: option<list<string>>,
+    }
+}

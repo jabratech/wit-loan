@@ -1,0 +1,5 @@
+package jabratech:loan-common;
+
+world loan-common {
+    export loan-handler;
+}
